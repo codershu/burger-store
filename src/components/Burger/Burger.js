@@ -1,8 +1,10 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import classes from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 const burger = (props) => {
+    console.log(props)
     let ingredients = Object.keys(props.ingredients).map(key => {
         return [...Array(props.ingredients[key])].map((_, index) => {
             return <BurgerIngredient key={key + index} type={key} />
@@ -10,7 +12,7 @@ const burger = (props) => {
     }).reduce((arr, el) => {
         return arr.concat(el)
     }, []);
-    console.log("ingredients", ingredients)
+    // console.log("ingredients", ingredients)
     if(ingredients.length === 0){
         ingredients = <p>Please start adding ingredients!</p>
     }
@@ -23,4 +25,4 @@ const burger = (props) => {
     );
 }
 
-export default burger;
+export default withRouter(burger);
